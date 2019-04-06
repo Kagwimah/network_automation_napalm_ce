@@ -1,0 +1,4 @@
+2019-04-06 15:15:04: No such file or directory: 'device_credential'
+2019-04-06 16:10:55: No such file or directory: 'device_credential'
+2019-04-06 16:12:38: No such file or directory: 'device_credential.txt'
+2019-04-06 16:13:32: No such file or directory: 'command_file.txt'

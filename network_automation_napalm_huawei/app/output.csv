@@ -1,0 +1,68 @@
+display ip int brief,"*down: administratively down
+!down: FIB overload down
+^down: standby
+(l): loopback
+(s): spoofing
+(d): Dampening Suppressed
+(E): E-Trunk down
+The number of interface that is UP in Physical is 28
+The number of interface that is DOWN in Physical is 26
+The number of interface that is UP in Protocol is 24
+The number of interface that is DOWN in Protocol is 30
+
+Interface                         IP Address/Mask      Physical   Protocol VPN 
+40GE0/5/0                         10.240.13.121/31     down       down     --  
+Eth-Trunk10.300                   unassigned           up         down     --  
+GigabitEthernet0/0/0              10.240.0.4/24        up         up       --  
+GigabitEthernet0/2/0(10G)         10.240.13.97/30      up         up       --  
+GigabitEthernet0/2/1(10G)         10.240.13.21/30      up         up       --  
+GigabitEthernet0/2/1.50           10.240.13.13/30      up         up       --  
+GigabitEthernet0/2/1.100          10.240.13.41/30      up         up       --  
+GigabitEthernet0/2/1.200          10.240.13.17/30      *down      down     --  
+GigabitEthernet0/3/0              10.240.13.33/30      up         up       --  
+GigabitEthernet0/3/1              10.240.13.6/30       up         up       --  
+GigabitEthernet0/3/2              unassigned           up         down     --  
+GigabitEthernet0/3/3              unassigned           up         down     --  
+GigabitEthernet0/3/3.1000         1.1.1.1/30           up         up       --  
+GigabitEthernet0/3/5.3100         unassigned           up         down     --  
+GigabitEthernet0/3/6              unassigned           down       down     --  
+GigabitEthernet0/3/6.400          unassigned           down       down     --  
+GigabitEthernet0/3/6.450          unassigned           down       down     --  
+GigabitEthernet0/3/6.451          unassigned           down       down     --  
+GigabitEthernet0/3/6.500          unassigned           down       down     --  
+GigabitEthernet0/3/6.600          unassigned           down       down     --  
+GigabitEthernet0/3/6.700          unassigned           down       down     --  
+GigabitEthernet0/3/7              unassigned           down       down     --  
+GigabitEthernet0/3/7.3100         unassigned           down       down     --  
+GigabitEthernet0/4/0              unassigned           down       down     --  
+GigabitEthernet0/4/0.100          unassigned           down       down     --  
+GigabitEthernet0/4/2              unassigned           down       down     --  
+GigabitEthernet0/4/3              unassigned           down       down     --  
+GigabitEthernet0/4/4              unassigned           down       down     --  
+GigabitEthernet0/4/5              unassigned           down       down     --  
+GigabitEthernet0/4/6              unassigned           down       down     --  
+GigabitEthernet0/4/7              unassigned           down       down     --  
+GigabitEthernet0/4/7.100          unassigned           down       down     --  
+LoopBack0                         10.240.14.4/32       up         up(s)    --  
+LoopBack10                        10.240.14.18/32      up         up(s)    --  
+LoopBack44                        10.240.44.4/32       up         up(s)    l3vpn
+LoopBack400                       unassigned           up         up(s)    --  
+LoopBack2147483647                128.210.166.113/16   up         up(s)    l3vpn
+NULL0                             unassigned           up         up(s)    --  
+Tunnel0/0/0                       unassigned           down       down     --  
+Tunnel0/0/23                      unassigned           down       down     --  
+Tunnel0/0/35                      10.240.14.4/32       down       down     --  
+Tunnel0/0/36                      10.240.14.4/32       down       down     --  
+Tunnel12                          10.240.14.4/32       down       down     --  
+Tunnel18                          10.240.14.4/32       down       down     --  
+Tunnel19                          10.240.14.4/32       up         up       --  
+Tunnel21                          10.240.14.4/32       up         up       --  
+Tunnel30                          10.240.14.4/32       up         up       --  
+Tunnel31                          10.240.14.4/32       up         up       --  
+Tunnel32                          10.240.14.4/32       up         up       --  
+Tunnel34                          10.240.14.4/32       up         up       --  
+Tunnel35                          10.240.14.4/32       up         up       --  
+Tunnel36                          10.240.14.4/32       up         up       --  
+Tunnel150                         10.240.14.4/32       up         up       --  
+Virtual-Template0                 unassigned           up         up(s)    --  
+"
