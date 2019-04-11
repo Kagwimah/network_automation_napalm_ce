@@ -18,8 +18,8 @@ def read_device_credentials(filename):
 
     return commands
 
-login_credentials = read_device_credentials("device_credential.txt")
-print(login_credentials['timeout'])
+# login_credentials = read_device_credentials("device_credential.txt")
+# print(login_credentials['timeout'])
 
 #
 # if 'hostname' or 'ip' in command:
@@ -28,3 +28,21 @@ print(login_credentials['timeout'])
 # if 'username' or 'user' in command:
 #     user = "{}='{}'".format(command, description)
 #     print(user)
+
+
+def read_inventory_file(filename):
+    hosts = []
+    with open(filename) as fh:
+        for line in fh:
+            hostname, ip_address = line.strip().split(' ', 1)
+            hosts.append(ip_address)
+
+    return hosts
+
+
+b= read_inventory_file("../inventory.txt")
+
+for ip in b:
+    print(
+    'hostname = {}'.format(ip)
+    )

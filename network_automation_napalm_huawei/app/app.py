@@ -53,33 +53,52 @@ def save_to_file(text_to_write, file_name):
         w.writerow([key, val])
 
 
-def run():
-    print("Please wait, the script is running...")
+def read_inventory_file(filename):
+    hosts = []
     try:
-        driver = get_network_driver("ce")
-        login_credentials = read_device_credentials("device_credential.txt")
-        # device_credential.txt file must not be empty
-        if len(login_credentials) > 0:
-            device = driver(hostname='{}'.format(login_credentials['hostname']),
-                            username='{}'.format(login_credentials['username']),
-                            password='{}'.format(login_credentials['password']),
-                            timeout=int(login_credentials['timeout']))
-            device.open()
-
-            commands_to_send = read_user_commands('command_file.txt')
-            # commands_to_send file must not be empty.
-            if commands_to_send is not '':
-                output = device.cli(commands_to_send)
-                output_file = "output_{}.csv".format(str(login_credentials['hostname']))
-                print("Script executed successfully.\n")
-                print("Output file : output_{}.csv".format(str(login_credentials['hostname'])))
-                save_to_file(output, output_file)
-                # with open("output_{}.txt".format(str(login_credentials['hostname'])), 'a') as the_file:
-                #     the_file.write(str(output))
-            device.close()
-    except ConnectionException as e:
-        print("Timeout Error.", e)
-        with open("conn_errors.txt", 'a') as the_file:
-            the_file.write("connection failed. \n")
+        with open(filename) as fh:
+            for line in fh:
+                hostname, ip_address = line.strip().split(' ', 1)
+                hosts.append(ip_address)
+    except FileNotFoundError :
+        print("No such file or directory: 'inventory.txt'")
+        with open("errors.txt", 'a') as the_file:
+            the_file.write("{}: No such file or directory: 'inventory.txt'\n".format(
+                datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+    return hosts
 
 
+def run():
+    hosts = read_inventory_file('inventory.txt')
+    host_count = len(hosts)
+    if host_count > 0:
+        lap_count = 1
+        for ip in hosts:
+            print("Please wait, executing script on node {} ... {} of {} \n".format(ip, lap_count, host_count))
+            try:
+                driver = get_network_driver("ce")
+                login_credentials = read_device_credentials("device_credential.txt")
+                # device_credential.txt file must not be empty
+                if len(login_credentials) > 0:
+                    device = driver(hostname='{}'.format(ip),
+                                    username='{}'.format(login_credentials['username']),
+                                    password='{}'.format(login_credentials['password']),
+                                    timeout=int(login_credentials['timeout']))
+                    device.open()
+
+                    commands_to_send = read_user_commands('command_file.txt')
+                    # commands_to_send file must not be empty.
+                    if commands_to_send is not '':
+                        output = device.cli(commands_to_send)
+                        output_file = "output_{}.csv".format(ip)
+                        print("Output file : output_{}.csv".format(ip))
+                        save_to_file(output, output_file)
+                        # with open("output_{}.txt".format(str(login_credentials['hostname'])), 'a') as the_file:
+                        #     the_file.write(str(output))
+                    lap_count = lap_count + 1
+                    device.close()
+                    print("Script executed successfully on node {} \n".format(ip))
+            except ConnectionException as e:
+                print("Timeout Error.", e)
+                with open("conn_errors.txt", 'a') as the_file:
+                    the_file.write("{}: Connection to {} failed. \n".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), ip))

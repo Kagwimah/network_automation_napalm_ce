@@ -1,0 +1,6 @@
+hostname 10.240.0.4
+hostname 10.240.0.5
+hostname 10.240.0.6
+hostname 10.240.0.7
+hostname 10.240.0.8
+hostname 10.240.0.9
