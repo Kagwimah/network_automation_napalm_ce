@@ -1,7 +1,7 @@
 
 # read  login details from a file.
 def read_device_credentials(filename):
-    # expected format:  "hostname='10.240.0.4', username='hwuser', password="Password@123", timeout=15"
+    # expected format:  "hostname='10.0.0.4', username='username', password="Password", timeout=15"
     commands = {}
     print(len(commands))
     with open(filename) as fh:
